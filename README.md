@@ -1,10 +1,12 @@
 # Netshoes challenge
+--------------------
 
 ## Prerequisites
 
 Make sure you have installed all of the following prerequisites on your development machine:
 
-* Node.js - [Download and install Node.js](https://nodejs.org/en/download/) and the npm package manager, if you don't have it yet.
+* Node.js - [Download and install Node.js](https://nodejs.org/en/download/);
+* MongoDb - [Download and install mongo](https://docs.mongodb.com/manual/installation/) and the npm package manager, if you don't have it yet.
 
 ## Structure
 
