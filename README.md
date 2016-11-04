@@ -8,6 +8,15 @@ Make sure you have installed all of the following prerequisites on your developm
 * Node.js - [Download and install Node.js](https://nodejs.org/en/download/);
 * MongoDb - [Download and install mongo](https://docs.mongodb.com/manual/installation/) and the npm package manager, if you don't have it yet.
 
+## Quick install
+
+The first thing you should do is install the Node.js dependencies. To install Node.js dependencies you're going to use npm again. In your application folder run this in the command-line:
+
+```bash
+$ npm install
+```
+
+
 ## Structure
 
 The basic structure of this challenge is given in the following way:
