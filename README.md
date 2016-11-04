@@ -10,7 +10,7 @@ Make sure you have installed all of the following prerequisites on your developm
 
 The basic structure of this challenge is given in the following way:
 
-* `front-end-recruitment/`Contains the source code of the front-end challenge.
+* `netshoes-challenge/`Contains the source code of the front-end challenge.
 * `data/`Contains sample json file.
 * `node_modules/` Contains all dependencies fetched via [NPM](https://www.npmjs.org/). However, this directory is unnecessary for versioning, so it is ignored.
 * `public/` Contains all the static files you use in your application, this is where you store your front-end files.
