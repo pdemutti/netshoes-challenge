@@ -73,7 +73,7 @@ ul li {
 .product-list li {
   width: 220px;
   float: left;
-  padding: 0 30px 57px 0;
+  padding: 0 20px 57px 0;
 
 }
 ul.product-list .item-title {
@@ -99,7 +99,7 @@ ul.product-list .item-title {
 }
 .cart-list {
   float: right;
-  width: 461px;
+  width: 475px;
   padding: 17px;
   background: #1B1A20;
   color: #FFF;

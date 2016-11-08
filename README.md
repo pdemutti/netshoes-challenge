@@ -16,6 +16,11 @@ The first thing you should do is install the Node.js dependencies. To install No
 $ npm install
 ```
 
+You'll need to insert all data of products.json into mongodb
+
+```bash
+$ npm run loadDataBase
+```
 
 ## Structure
 
