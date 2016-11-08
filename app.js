@@ -1,5 +1,7 @@
 var express = require('express');
 var fs = require('fs');
+var cartServices = require("./cart_services.js");
+
 var cookieParser = require('cookie-parser')
 var app = express();
 var mongodb = require('mongodb');
@@ -79,14 +81,7 @@ app.get('/cart/add/:id', function(request, response){
 
   findProductById(id, function(error, product){
     if (product){
-      var cartItem = {
-        "id":  product.id,
-        "title":  product.title,
-        "image":  product.image,
-        "availableSizes":  product.availableSizes
-
-      }
-      addToCart(cartId, cartItem, function(error, cart){
+      cartServices.addToCart(cartId, product, function(error, cart){
         if (cart._id){
           response.cookie('cart', cart._id, { maxAge: 900000, httpOnly: true });
         }
@@ -120,31 +115,10 @@ function findProductById(id, callback){
   });
 }
 
-function addToCart(cartId, cartItem, callback){
-  findCartById(cartId, function(error, cart){
-    if (cart == null){
-      cart = {
-          items: [
-            cartItem
-          ]
-      };
-      insertToCart(cart, function(error, cartSaved){
-        console.log("Insert...." + cartSaved._id);
-        callback(false, cartSaved);
-      })
-    }
-    else{
-      cart.items[cart.items.length] = cartItem;
 
-      updateToCart(cart, function(error, cartSaved){
-        console.log("Update...." + cartSaved._id);
-        findCartById(cartId, function(error, cart){
-            callback(false, cart);
-        });
-      })
-    }
-  })
-}
+
+
+
 
 function findCartById(id, callback){
 
@@ -185,22 +159,6 @@ function insertToCart(cart, callback){
   });
 }
 
-function updateToCart(cart, callback){
-  MongoClient.connect(url, function (err, db) {
-    var collection = db.collection('carts');
-    //var o_id = new mongodb.ObjectID(id);
-    collection.update({_id: cart._id}, cart, function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-        callback(false, result)
-      }
-      db.close();
-    });
-
-  });
-}
 
 
 app.get('/cart/remove/:id', function(request, response){
@@ -219,7 +177,7 @@ app.get('/cart/remove/:id', function(request, response){
     cart.items = items;
     console.log(cart);
 
-    updateToCart(cart, function(error, result){
+    cartServices.updateToCart(cart, function(error, result){
         response.json(cart);
     });
   });

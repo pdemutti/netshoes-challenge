@@ -66,6 +66,7 @@ App.Challenge = {
             id = singleItem.id,
             title = singleItem.title,
             thumb = singleItem.image,
+            qtd = singleItem.quantity,
             size =  singleItem.availableSizes.toString();
 
         console.log(singleItem);
@@ -74,7 +75,7 @@ App.Challenge = {
             html += "<div class='details'>";
               html += "<span class='cart-item-title'>"+title+"</span>";
                 html += "<span class='cart-item-size'>"+size+"</span>";
-                  html += "<span class='cart-item-qtd'>Quantidade: 1</span>";
+                  html += "<span class='cart-item-qtd'>Quantidade: "+qtd+"</span>";
                   html += "<div class='action-area'>";
                 html += "<span class='remove-bt' onclick='App.Challenge.removeCartItem("+id+")'>X</span>";
               html += "</div>";
