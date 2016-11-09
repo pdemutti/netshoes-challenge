@@ -12,22 +12,22 @@ app.use(express.static('public'));
 
 app.use(cookieParser());
 
-app.get('/allproducts', function(request, response){
+app.get('/products', function(request, response){
 
   MongoClient.connect(url, function (err, db) {
     var collection = db.collection('products');
     if (err) {
-      console.log('Unable to connect to the mongoDB server. Error:', err);
+      // console.log('Unable to connect to the mongoDB server. Error:', err);
     } else {
 
       collection.find({}).toArray(function (err, result) {
        if (err) {
-         console.log(err);
+        //  console.log(err);
        } else if (result.length) {
         //  console.log('Found:', result);
         response.json(result);
        } else {
-         console.log('No document(s) found with defined "find" criteria!');
+        //  console.log('No document(s) found with defined "find" criteria!');
        }
        db.close();
      });
@@ -62,7 +62,6 @@ app.get('/product/:id', function(request, response){
 
 app.get('/cart/', function(request, response){
   var cartId = request.cookies.cart;
-  console.log("cart " + cartId)
   cartServices.findCartById(cartId, function(error, cart){
     if (cart){
       response.json(cart);
@@ -78,7 +77,6 @@ app.get('/cart/add/:id', function(request, response){
   var id =  parseInt(request.params.id);
   var cartId = request.cookies.cart;
 
-  console.log("cart " + cartId)
 
   productServices.findProductById(id, function(error, product){
     if (product){
@@ -100,7 +98,6 @@ app.get('/cart/remove/:id', function(request, response){
   var cartId = request.cookies.cart;
   var productId =  parseInt(request.params.id);
 
-  console.log("cart " + cartId + " removing product " +  productId);
   cartServices.findCartById(cartId, function(error, cart){
     var items = [];
     for(var key in cart.items){
@@ -119,7 +116,7 @@ app.get('/cart/remove/:id', function(request, response){
 
 });
 
-app.use('/scripts_node', express.static(__dirname + '/node_modules/'));
+// app.use('/scripts_node', express.static(__dirname + '/node_modules/'));
 
 
 var port = process.env.PORT || 3001;

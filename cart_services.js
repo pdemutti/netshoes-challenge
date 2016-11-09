@@ -19,9 +19,9 @@ exports.insertToCart = function(cart, callback){
     var collection = db.collection('carts');
     collection.insert(cart, function (err, result) {
       if (err) {
-        console.log(err);
+        // console.log(err);
       } else {
-        console.log(result);
+        // console.log(result);
         callback(false, result.ops[0])
       }
       db.close();
@@ -40,7 +40,6 @@ exports.addToCart = function (cartId, product, callback){
           ]
       };
       exports.insertToCart(cart, function(error, cartSaved){
-        console.log("Insert...." + cartSaved._id);
         callback(false, cartSaved);
       });
     }
@@ -55,7 +54,6 @@ exports.addToCart = function (cartId, product, callback){
       }
 
       exports.updateToCart(cart, function(error, cartSaved){
-        // console.log("Update...." + cartSaved._id);
         exports.findCartById(cartId, function(error, cart){
             callback(false, cart);
         });
@@ -69,7 +67,7 @@ exports.findCartById = function (id, callback){
   MongoClient.connect(url, function (err, db) {
     var collection = db.collection('carts');
     if (err) {
-      console.log('Unable to connect to the mongoDB server. Error:', err);
+      // console.log('Unable to connect to the mongoDB server. Error:', err);
     } else {
       var o_id = new mongodb.ObjectID(id);
       collection.find({_id: o_id}).toArray(function (err, result) {
@@ -78,7 +76,7 @@ exports.findCartById = function (id, callback){
        } else if (result.length) {
          callback(false, result[0]);
        } else {
-         console.log('No document(s) found with defined "find" criteria!');
+        //  console.log('No document(s) found with defined "find" criteria!');
          callback(false, null)
        }
        db.close();
@@ -103,9 +101,9 @@ exports.updateToCart = function(cart, callback){
     //var o_id = new mongodb.ObjectID(id);
     collection.update({_id: cart._id}, cart, function (err, result) {
       if (err) {
-        console.log(err);
+        // console.log(err);
       } else {
-        console.log(result);
+        // console.log(result);
         callback(false, result)
       }
       db.close();

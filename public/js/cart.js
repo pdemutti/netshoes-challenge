@@ -3,7 +3,7 @@ var App = App || {};
 
 App.Challenge = {
     setup: function() {
-        App.Challenge.getData("/allproducts");
+        App.Challenge.getData("/products");
         App.Challenge.getCartList();
         App.Challenge.bindItem();
         App.Challenge.updateLockIcon();
@@ -81,7 +81,6 @@ App.Challenge = {
     bindItem: function(){
       $('.product-list li').click(function(event){
          var id = this.getAttribute("data-id");
-          // console.log(this.getAttribute("data-id"))
           App.Challenge.addItemToCart(id);
           App.Challenge.showCart();
       });
@@ -105,7 +104,6 @@ App.Challenge = {
     getCartList: function(){
       axios.get("/cart/").then(function(res) {
         App.Challenge.buildCartItemMrkp(res);
-        // App.Challenge.updateLockIcon(res);
       });
     },
     buildCartItemMrkp: function(res){
@@ -121,7 +119,6 @@ App.Challenge = {
             qtd = singleItem.quantity,
             size =  singleItem.availableSizes.toString();
 
-        console.log(singleItem);
         var html = "<li>";
           html += "<figure class='thumb'><img src='images/"+thumb+"' /></figure>";
             html += "<div class='details'>";
