@@ -30,14 +30,14 @@ $ npm start
 
 
 
-### Cart endpoint documentation
+### <i class="icon-file"></i> Add Cart endpoint documentation
 
    > Add new item to cart, using cookie to indentify user cart
 
-Endpoint: /cart/add/{idProduct}
-method: GET
-response :
-Set-Cookie:cart={cartId}
+Endpoint: /cart/add/{idProduct} <br />
+method: GET <br />
+response :  <br />
+Set-Cookie:cart={cartId}   <br />
 body:
 ```
 {
