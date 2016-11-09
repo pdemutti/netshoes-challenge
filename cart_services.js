@@ -14,7 +14,21 @@ exports.createCartItem = function(product){
   }
   return cartItem;
 };
+exports.insertToCart = function(cart, callback){
+  MongoClient.connect(url, function (err, db) {
+    var collection = db.collection('carts');
+    collection.insert(cart, function (err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        callback(false, result.ops[0])
+      }
+      db.close();
+    });
 
+  });
+}
 exports.addToCart = function (cartId, product, callback){
   exports.findCartById(cartId, function(error, cart){
 
@@ -25,11 +39,10 @@ exports.addToCart = function (cartId, product, callback){
             cartItem
           ]
       };
-      console.log("demutti checking", cart);
-      insertToCart(cart, function(error, cartSaved){
+      exports.insertToCart(cart, function(error, cartSaved){
         console.log("Insert...." + cartSaved._id);
         callback(false, cartSaved);
-      })
+      });
     }
     else{
       var cartItem = exports.findCartItemById(cart, product.id);

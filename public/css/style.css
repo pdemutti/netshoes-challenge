@@ -1,6 +1,7 @@
 body{
   font-family: OpenSans-Regular;
   /*font-size: 13px;*/
+  position: relative;
 }
 ul.product-list{
   float: left;
@@ -11,6 +12,16 @@ ul.product-list{
 ul.product-list figure{
   margin: 0 auto;
   padding-bottom: 9px;
+}
+.toogle-cart {
+  color: #000;
+  font-size: 19px;
+  font-family: OpenSans-Bold;
+}
+.toogle-cart:hover{
+  cursor: pointer;
+  width: 32px;
+  color: #fff;
 }
 .details .action-area span.remove-bt{
   width: 32px;
@@ -47,7 +58,19 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   text-align: center;
   color: #000;
 }
-.lock{
+.has-items{
+  position: absolute;
+  right: 13px;
+  cursor: pointer;
+}
+.has-items .lock{
+  background-image: url(/images/cadeado_sacola_black.png);
+  width: 33px;
+  height: 40px;
+  float: left;
+  right: 0;
+}
+.header-cart .lock{
   background-image: url(/images/cadeado_sacola.png);
   width: 33px;
   height: 40px;
@@ -69,6 +92,7 @@ ul.product-list hr {
 }
 ul li {
   list-style: none;
+  cursor: pointer;
 }
 .product-list li {
   width: 220px;
@@ -83,7 +107,7 @@ ul.product-list .item-title {
   line-height: 1.2em;
   color: #47464A;
 }
-.item-title, .item-price, .item-installment{
+.item-title, .item-price, .item-installment, .wrap-hr{
   text-align: center;
   float: left;
   width: 100%;
@@ -97,15 +121,14 @@ ul.product-list .item-title {
   font-size: 26px;
   font-family: OpenSans-Bold;
 }
-.cart-list {
+#cart-list {
   float: right;
   width: 475px;
   padding: 17px;
   background: #1B1A20;
   color: #FFF;
-  min-height: 900px;
+  min-height: 1200px;
 }
-
 
 @-webkit-keyframes slide {
     100% { left: 0; }
@@ -114,28 +137,37 @@ ul.product-list .item-title {
 @keyframes slide {
     100% { left: 0; }
 }
+.store{
+  float: right;
+}
 
+.hidden {
+    z-index:2;
+    position:absolute;
+    right:-700px;
+    background:#f90;
+    color:#000;
+}
 
-
-.cart-list ul{
+#cart-list ul{
   padding: 0;
 }
-.cart-list ul li{
+#cart-list ul li{
   float: left;
   padding: 17px 0 17px 15px;
   border-bottom: 3px solid #131316;
   height: 55px;
 }
-.cart-list ul li:last-child{
+#cart-list ul li:last-child{
   border-bottom: 0px solid #131316;
 
 }
-.cart-list ul li span{
+#cart-list ul li span{
   float: left;
   width: 340px;
   font-size: 14px;
 }
-.cart-list .cart-item-price{
+#cart-list .cart-item-price{
   float: left;
   width: 32px;
   position: absolute;
@@ -143,7 +175,7 @@ ul.product-list .item-title {
   color: #ab8b02;
   font-family: OpenSans-Bold;
 }
-.cart-list .cart-item-size, .cart-list .cart-item-qtd{
+#cart-list .cart-item-size, #cart-list .cart-item-qtd{
   color: #6E6E71;
   font-size: 12px;
 }
@@ -154,10 +186,10 @@ ul.product-list .item-title {
   display: block;
   position: relative;
 }
-.cart-list img{
+#cart-list img{
   width: 50px;
 }
-.cart-list .thumb{
+#cart-list .thumb{
   width: 50px;
   padding: 0;
   margin: 0;
@@ -171,7 +203,7 @@ ul.product-list .item-title {
   width: 486px;
   position: relative;
 }
-.cart-list h2{
+#cart-list h2{
   text-align: center;
   margin: 0;
   width: 80px;

@@ -1,6 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var cartServices = require("./cart_services.js");
+var productServices = require("./product_services.js");
 
 var cookieParser = require('cookie-parser')
 var app = express();
@@ -62,7 +63,7 @@ app.get('/product/:id', function(request, response){
 app.get('/cart/', function(request, response){
   var cartId = request.cookies.cart;
   console.log("cart " + cartId)
-  findCartById(cartId, function(error, cart){
+  cartServices.findCartById(cartId, function(error, cart){
     if (cart){
       response.json(cart);
     }
@@ -79,7 +80,7 @@ app.get('/cart/add/:id', function(request, response){
 
   console.log("cart " + cartId)
 
-  findProductById(id, function(error, product){
+  productServices.findProductById(id, function(error, product){
     if (product){
       cartServices.addToCart(cartId, product, function(error, cart){
         if (cart._id){
@@ -94,79 +95,13 @@ app.get('/cart/add/:id', function(request, response){
   });
 });
 
-function findProductById(id, callback){
-  MongoClient.connect(url, function (err, db) {
-    var collection = db.collection('products');
-    if (err) {
-      console.log('Unable to connect to the mongoDB server. Error:', err);
-    } else {
-      collection.find({id: id}).toArray(function (err, result) {
-       if (err) {
-         callback(true, null);
-       } else if (result.length) {
-         callback(false, result[0]);
-       } else {
-         console.log('No document(s) found with defined "find" criteria!');
-         callback(false, null)
-       }
-       db.close();
-     });
-    }
-  });
-}
-
-
-
-
-
-
-function findCartById(id, callback){
-
-  MongoClient.connect(url, function (err, db) {
-    var collection = db.collection('carts');
-    if (err) {
-      console.log('Unable to connect to the mongoDB server. Error:', err);
-    } else {
-      var o_id = new mongodb.ObjectID(id);
-      collection.find({_id: o_id}).toArray(function (err, result) {
-       if (err) {
-         callback(true, null);
-       } else if (result.length) {
-         callback(false, result[0]);
-       } else {
-         console.log('No document(s) found with defined "find" criteria!');
-         callback(false, null)
-       }
-       db.close();
-     });
-    }
-  });
-}
-
-function insertToCart(cart, callback){
-  MongoClient.connect(url, function (err, db) {
-    var collection = db.collection('carts');
-    collection.insert(cart, function (err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(result);
-        callback(false, result.ops[0])
-      }
-      db.close();
-    });
-
-  });
-}
-
-
 
 app.get('/cart/remove/:id', function(request, response){
   var cartId = request.cookies.cart;
   var productId =  parseInt(request.params.id);
 
   console.log("cart " + cartId + " removing product " +  productId);
-  findCartById(cartId, function(error, cart){
+  cartServices.findCartById(cartId, function(error, cart){
     var items = [];
     for(var key in cart.items){
       var item = cart.items[key];
@@ -183,6 +118,8 @@ app.get('/cart/remove/:id', function(request, response){
   });
 
 });
+
+app.use('/scripts_node', express.static(__dirname + '/node_modules/'));
 
 
 var port = process.env.PORT || 3001;

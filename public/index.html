@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <title>Netshoes</title>
   <link rel="stylesheet" href="/css/style.css" />
-  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
 </head>
 <body>
-  <div class="store">
-
-  <div class="cart-list">
-    <div class="header-cart">
-      <i class="lock"></i>
-      <span class="badge">4</span>
-      <h2>Sacola</h2>
-    </div>
-    <ul id="cart-list"></ul>
+  <div class="has-items">
+    <i class="lock"></i>
   </div>
+  <div class="store"></div>
+<div class="hidden" id="cart-list">
+  <div class="header-cart">
+    <span class="toogle-cart">X</span>
+    <i class="lock"></i>
+    <span class="badge">4</span>
+    <h2>Sacola</h2>
+  </div>
+  <ul id="cart"></ul>
 </div>
 </body>
-<!-- <script src="js/jquery.js"></script> -->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="   crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.js"integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+<script src="scripts_node/axios/dist/axios.js"></script>
+
 <script src="js/cart.js"></script>
 
 </html>

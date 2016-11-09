@@ -4,12 +4,15 @@
   "description": "## Expected result",
   "main": "app.js",
   "dependencies": {
+    "axios": "^0.15.2",
     "express": "^4.14.0",
-    "mongodb": "^2.2.11"
+    "jasmine-node": "^1.14.5",
+    "mongodb": "^2.2.11",
+    "request": "^2.78.0"
   },
   "devDependencies": {},
-  "scripts" :
-  {
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine-node spec",
     "loadDataBase": "node public/js/mongo-setup.js"
   },
   "repository": {
