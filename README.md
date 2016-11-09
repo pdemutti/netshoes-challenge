@@ -32,7 +32,7 @@ $ npm start
 
 ### Add Cart endpoint documentation
 
-   > Find all product items
+  > Add new item to cart, using cookie to indentify user cart
 
 Endpoint: /cart/add/{idProduct} <br />
 method: GET <br />
@@ -59,7 +59,7 @@ body:
 
 ### All Products endpoint documentation
 
-   > Add new item to cart, using cookie to indentify user cart
+  > Find all product items
 
 Endpoint: /allproducts <br />
 method: GET <br />
@@ -88,6 +88,7 @@ body:
     "isFreeShipping": true
   },
   {...}
+]  
 ```
 
 
