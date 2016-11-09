@@ -30,9 +30,9 @@ $ npm start
 
 
 
-### <i class="icon-file"></i> Add Cart endpoint documentation
+### Add Cart endpoint documentation
 
-   > Add new item to cart, using cookie to indentify user cart
+   > Find all product items
 
 Endpoint: /cart/add/{idProduct} <br />
 method: GET <br />
@@ -55,6 +55,39 @@ body:
   ],
   "_id": "5823a30b58b63d418ff80922"
 }
+```
+
+### All Products endpoint documentation
+
+   > Add new item to cart, using cookie to indentify user cart
+
+Endpoint: /allproducts <br />
+method: GET <br />
+response :  <br />
+body:
+```
+[
+  {
+    "_id": "582233fdc48401e122ad3bb7",
+    "id": 0,
+    "sku": 8552515751438644,
+    "title": "Camisa Nike Corinthians I",
+    "description": "14/15 s/nº",
+    "image": "camisetagrandecorinthians_1.png",
+    "availableSizes": [
+    "S",
+    "G",
+    "GG",
+    "GGG"
+    ],
+    "style": "Branco com listras pretas",
+    "price": 229.9,
+    "installments": 9,
+    "currencyId": "BRL",
+    "currencyFormat": "R$",
+    "isFreeShipping": true
+  },
+  {...}
 ```
 
 
