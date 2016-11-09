@@ -6,7 +6,7 @@ App.Challenge = {
         App.Challenge.getData("/allproducts");
         App.Challenge.getCartList();
         App.Challenge.bindItem();
-        App.Challenge.bindLockIcon();
+        App.Challenge.updateLockIcon();
         App.Challenge.hiddenCart();
 
     },
@@ -41,11 +41,12 @@ App.Challenge = {
         $('.store').append(html);
         App.Challenge.bindItem();
     },
-    bindLockIcon: function(){
+    updateLockIcon: function(){
       var hasItemsOut = document.getElementsByClassName("has-items");
       var hasItemsInside = document.getElementsByClassName("header-cart");
 
-      $('.has-items').find(".badge").remove();
+      $('.header-cart').find(".badge").remove();
+      $('.has-items').find(".badge, .lock").remove();
 
       axios.get("/cart/").then(function(res) {
         var quantityVal = [];
@@ -57,14 +58,18 @@ App.Challenge = {
           return a + b;
         }, 0);
 
-        var html = "<span class='badge'>"+sum+"</span>";
-        if(sum > 0){
-          $(hasItemsOut).append(html);
-          $(hasItemsInside).append(html);
-          $('body').find(".has-items").click(function(){
-            App.Challenge.showCart();
-          });
+        var html = "<i class='lock'></i>";
+        html += "<span class='badge'>"+sum+"</span>";
+        if (quantityVal){
+          if(sum > 0){
+            $(hasItemsOut).append(html);
+            $(hasItemsInside).append(html);
+            $('body').find(".has-items").click(function(){
+              App.Challenge.showCart();
+            });
+          }
         }
+
       });
     },
     bindItem: function(){
@@ -88,13 +93,13 @@ App.Challenge = {
     addItemToCart: function(id){
       axios.get("/cart/add/"+id).then(function(res) {
         App.Challenge.buildCartItemMrkp(res);
-        App.Challenge.bindLockIcon();
+        App.Challenge.updateLockIcon();
       });
     },
     getCartList: function(){
       axios.get("/cart/").then(function(res) {
         App.Challenge.buildCartItemMrkp(res);
-        // App.Challenge.bindLockIcon(res);
+        // App.Challenge.updateLockIcon(res);
       });
     },
     buildCartItemMrkp: function(res){
@@ -130,6 +135,10 @@ App.Challenge = {
     removeCartItem: function(id){
       axios.get("/cart/remove/" + id).then(function(res) {
        App.Challenge.buildCartItemMrkp(res);
+       App.Challenge.updateLockIcon();
+       App.Challenge.getCartList();
+
+
      });
     }
 };
