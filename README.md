@@ -57,6 +57,43 @@ body:
 }
 ```
 
+### Remove Cart endpoint documentation
+
+  > Remove item from cart, return cart after removed
+
+Endpoint: /cart/remove/{idProduct} <br />
+method: GET <br />
+response :  <br />
+body:
+```
+{
+  "_id": "5823a966a8c2d24580c9495c",
+  "items": [
+    {
+      "id": 13,
+      "title": "Tênis Nike Biscuit Canvas",
+      "image": "camisetagrandecorinthians_9.png",
+      "availableSizes": [
+      "41"
+    ],
+    "quantity": 1,
+    "price": 129.9
+    },
+    {
+      "id": 11,
+      "title": "Jaqueta Corinthians Elite",
+      "image": "camisetagrandecorinthians_9.png",
+      "availableSizes": [
+      "S",
+      "G"
+    ],
+    "quantity": 1,
+    "price": 99.9
+    }
+  ]
+}
+```
+
 ### All Products endpoint documentation
 
   > Find all product items
@@ -117,40 +154,6 @@ body:
     {...}
   ]
 }
-```
-
-### All Products endpoint documentation
-
-  > Find all product items
-
-Endpoint: /allproducts <br />
-method: GET <br />
-response :  <br />
-body:
-```
-[
-  {
-    "_id": "582233fdc48401e122ad3bb7",
-    "id": 0,
-    "sku": 8552515751438644,
-    "title": "Camisa Nike Corinthians I",
-    "description": "14/15 s/nº",
-    "image": "camisetagrandecorinthians_1.png",
-    "availableSizes": [
-    "S",
-    "G",
-    "GG",
-    "GGG"
-    ],
-    "style": "Branco com listras pretas",
-    "price": 229.9,
-    "installments": 9,
-    "currencyId": "BRL",
-    "currencyFormat": "R$",
-    "isFreeShipping": true
-  },
-  {...}
-]  
 ```
 
 
