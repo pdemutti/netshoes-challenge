@@ -22,6 +22,11 @@ You'll need to insert all data of products.json into mongodb
 $ npm run loadDataBase
 ```
 
+Starting application
+
+```bash
+$ npm start
+```
 ## Structure
 
 The basic structure of this challenge is given in the following way:
