@@ -27,6 +27,37 @@ Starting application
 ```bash
 $ npm start
 ```
+
+
+
+### Cart endpoint documentation
+
+   > Add new item to cart, using cookie to indentify user cart
+
+Endpoint: /cart/add/{idProduct}
+method: GET
+response :
+Set-Cookie:cart={cartId}
+body:
+```
+{
+"items": [
+    {
+      "id": 13,
+      "title": "Tênis Nike Biscuit Canvas",
+      "image": "camisetagrandecorinthians_9.png",
+      "availableSizes": [
+      "41"
+    ],
+      "quantity": 1,
+      "price": 129.9
+    }
+  ],
+  "_id": "5823a30b58b63d418ff80922"
+}
+```
+
+
 ## Structure
 
 The basic structure of this challenge is given in the following way:
