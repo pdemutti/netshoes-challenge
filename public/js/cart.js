@@ -45,30 +45,36 @@ App.Challenge = {
       var hasItemsOut = document.getElementsByClassName("has-items");
       var hasItemsInside = document.getElementsByClassName("header-cart");
 
-      $('.header-cart').find(".badge").remove();
-      $('.has-items').find(".badge, .lock").remove();
+      $('.has-items, .header-cart').find(".badge, .lock").remove();
 
       axios.get("/cart/").then(function(res) {
+
         var quantityVal = [];
         var data = res.data.items;
-        for (var prop in data) {
-          quantityVal.push(data[prop].quantity);
-        }
-        var sum = quantityVal.reduce(function(a, b) {
-          return a + b;
-        }, 0);
+        if(data){
+          for (var prop in data) {
+            quantityVal.push(data[prop].quantity);
+          }
+          var sum = quantityVal.reduce(function(a, b) {
+            return a + b;
+          }, 0);
 
-        var html = "<i class='lock'></i>";
-        html += "<span class='badge'>"+sum+"</span>";
-        if (quantityVal){
-          if(sum > 0){
-            $(hasItemsOut).append(html);
-            $(hasItemsInside).append(html);
-            $('body').find(".has-items").click(function(){
-              App.Challenge.showCart();
-            });
+          var html = "<i class='lock'></i>";
+          html += "<span class='badge'>"+sum+"</span>";
+          if (quantityVal){
+            if(sum > 0){
+              $(hasItemsOut).append(html);
+              $(hasItemsInside).append(html);
+              $('body').find(".has-items").click(function(){
+                App.Challenge.showCart();
+              });
+            }
           }
         }
+        else {
+          var cart = $('#cart-list');
+          cart.animate({"right":"-700"}, "fast").removeClass('visible');
+         }
 
       });
     },
@@ -135,10 +141,8 @@ App.Challenge = {
     removeCartItem: function(id){
       axios.get("/cart/remove/" + id).then(function(res) {
        App.Challenge.buildCartItemMrkp(res);
-       App.Challenge.updateLockIcon();
        App.Challenge.getCartList();
-
-
+       App.Challenge.updateLockIcon();
      });
     }
 };
