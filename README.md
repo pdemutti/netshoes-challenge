@@ -28,6 +28,12 @@ Starting application
 $ npm start
 ```
 
+Listening port on 3001
+
+```bash
+http://localhost:3001/
+```
+
 
 Endpoints Documentation
 -------------
@@ -95,11 +101,11 @@ body:
 }
 ```
 
-### All Products endpoint
+### Products endpoint
 
   > Find all product items
 
-Endpoint: /allproducts <br />
+Endpoint: /products <br />
 method: GET <br />
 response :  <br />
 body:
