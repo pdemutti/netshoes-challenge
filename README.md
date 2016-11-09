@@ -29,8 +29,9 @@ $ npm start
 ```
 
 
-
-### Add Cart endpoint documentation
+Endpoints Documentation
+-------------
+### Add Cart endpoint
 
   > Add new item to cart, using cookie to indentify user cart
 
@@ -57,7 +58,7 @@ body:
 }
 ```
 
-### Remove Cart endpoint documentation
+### Remove Cart endpoint
 
   > Remove item from cart, return cart after removed
 
@@ -94,7 +95,7 @@ body:
 }
 ```
 
-### All Products endpoint documentation
+### All Products endpoint
 
   > Find all product items
 
@@ -129,7 +130,7 @@ body:
 ```
 
 
-### Cart endpoint documentation
+### Cart endpoint
 
   > Find all cart items
 
